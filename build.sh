@@ -1,5 +1,5 @@
 #!/bin/sh
-# Builds build/MouseBattery.app: a universal (arm64 + x86_64) binary, Info.plist, icon,
+# Builds build.noindex/MouseBattery.app: a universal (arm64 + x86_64) binary, Info.plist, icon,
 # ad-hoc signature. Used by install.sh locally and by the release workflow in CI.
 #   VERSION=1.2.0 ./build.sh   (default: the latest git tag without "v", else 0.0.0)
 set -eu
@@ -8,15 +8,15 @@ LABEL=org.anybyte.mouse-battery
 MIN_MACOS=12.0
 VERSION="${VERSION:-$(git describe --tags --abbrev=0 2>/dev/null | sed 's/^v//' || true)}"
 VERSION="${VERSION:-0.0.0}"
-APP=build/MouseBattery.app
+APP=build.noindex/MouseBattery.app
 
 rm -rf "$APP"
-mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources" build/obj
+mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources" build.noindex/obj
 for arch in arm64 x86_64; do
-    swiftc -O -target "$arch-apple-macos$MIN_MACOS" -o "build/obj/MouseBattery-$arch" main.swift
+    swiftc -O -target "$arch-apple-macos$MIN_MACOS" -o "build.noindex/obj/MouseBattery-$arch" main.swift
 done
-lipo -create -output "$APP/Contents/MacOS/MouseBattery" build/obj/MouseBattery-arm64 build/obj/MouseBattery-x86_64
-cp icon/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
+lipo -create -output "$APP/Contents/MacOS/MouseBattery" build.noindex/obj/MouseBattery-arm64 build.noindex/obj/MouseBattery-x86_64
+cp icon/compiled/AppIcon.icns icon/compiled/Assets.car "$APP/Contents/Resources/"
 
 cat > "$APP/Contents/Info.plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -26,6 +26,7 @@ cat > "$APP/Contents/Info.plist" <<EOF
   <key>CFBundleName</key><string>MouseBattery</string>
   <key>CFBundleExecutable</key><string>MouseBattery</string>
   <key>CFBundleIconFile</key><string>AppIcon</string>
+  <key>CFBundleIconName</key><string>AppIcon</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleShortVersionString</key><string>$VERSION</string>
   <key>CFBundleVersion</key><string>$VERSION</string>

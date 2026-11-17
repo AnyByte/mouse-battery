@@ -11,7 +11,7 @@ PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 mkdir -p "$HOME/Applications" "$HOME/Library/LaunchAgents"
 launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
 rm -rf "$APP"
-ditto build/MouseBattery.app "$APP"
+ditto build.noindex/MouseBattery.app "$APP"
 
 cat > "$PLIST" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>

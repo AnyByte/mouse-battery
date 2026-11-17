@@ -42,7 +42,7 @@ and instant wake/sleep detection need it.
 Needs the Xcode command line tools (`xcode-select --install`).
 
 ```sh
-./build.sh      # build/MouseBattery.app, universal arm64 + x86_64
+./build.sh      # build.noindex/MouseBattery.app, universal arm64 + x86_64
 ./install.sh    # build, copy to ~/Applications, start at login via a LaunchAgent
 ```
 

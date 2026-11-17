@@ -13,11 +13,11 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Build
         run: VERSION="${GITHUB_REF_NAME#v}" ./build.sh
       - name: Package
-        run: ditto -c -k --keepParent build/MouseBattery.app "MouseBattery-${GITHUB_REF_NAME}.zip"
+        run: ditto -c -k --keepParent build.noindex/MouseBattery.app "MouseBattery-${GITHUB_REF_NAME}.zip"
       - name: Release
         if: startsWith(github.ref, 'refs/tags/v')
         env:
@@ -25,7 +25,7 @@ jobs:
         run: gh release create "$GITHUB_REF_NAME" "MouseBattery-${GITHUB_REF_NAME}.zip" --title "MouseBattery $GITHUB_REF_NAME" --generate-notes
       - name: Upload artifact
         if: "!startsWith(github.ref, 'refs/tags/v')"
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: MouseBattery
           path: MouseBattery-*.zip
