@@ -16,7 +16,8 @@ for arch in arm64 x86_64; do
     swiftc -O -target "$arch-apple-macos$MIN_MACOS" -o "build.noindex/obj/MouseBattery-$arch" main.swift
 done
 lipo -create -output "$APP/Contents/MacOS/MouseBattery" build.noindex/obj/MouseBattery-arm64 build.noindex/obj/MouseBattery-x86_64
-cp icon/compiled/AppIcon.icns icon/compiled/Assets.car "$APP/Contents/Resources/"
+ICON=$(cat icon/compiled/name)
+cp "icon/compiled/$ICON.icns" icon/compiled/Assets.car "$APP/Contents/Resources/"
 
 cat > "$APP/Contents/Info.plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -25,8 +26,8 @@ cat > "$APP/Contents/Info.plist" <<EOF
   <key>CFBundleIdentifier</key><string>$LABEL</string>
   <key>CFBundleName</key><string>MouseBattery</string>
   <key>CFBundleExecutable</key><string>MouseBattery</string>
-  <key>CFBundleIconFile</key><string>AppIcon</string>
-  <key>CFBundleIconName</key><string>AppIcon</string>
+  <key>CFBundleIconFile</key><string>$ICON</string>
+  <key>CFBundleIconName</key><string>$ICON</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleShortVersionString</key><string>$VERSION</string>
   <key>CFBundleVersion</key><string>$VERSION</string>

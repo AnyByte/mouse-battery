@@ -1,20 +1,14 @@
 {
-  "fill": "automatic",
+  "fill": {
+    "automatic-gradient": "extended-srgb:0.00000,0.47843,1.00000,1.00000"
+  },
   "groups": [
     {
       "layers": [
         {
           "glass": true,
           "name": "glyph",
-          "image-name-specializations": [
-            {
-              "value": "glyph-light.png"
-            },
-            {
-              "appearance": "dark",
-              "value": "glyph-dark.png"
-            }
-          ]
+          "image-name": "glyph-dark.png"
         }
       ],
       "shadow": {
