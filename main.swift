@@ -1,6 +1,6 @@
-// MouseBattery: menu bar battery level and settings of a Pulsar mouse behind the
-// 1K wireless dongle (3710:5402). The icon is shown only while the dongle is plugged
-// in and the mouse answers (it sleeps after its idle timer).
+// XliteBattery: menu bar battery level and settings of the Pulsar Xlite v4 Wireless behind
+// its 1K dongle (3710:5402); other mice are out of scope. The icon is shown only while the
+// dongle is plugged in and the mouse answers (it sleeps after its idle timer).
 //
 // Protocol: Fusion2/Sonix 64-byte feature reports (no report ID) on the dongle's vendor
 // interface, as in github.com/packerlschupfer/pulsar-mouse-linux
@@ -415,14 +415,14 @@ func cli() -> Never {
         case .failure(let e): print("error: \(e.text)"); exit(1)
         }
     }
-    print("usage: MouseBattery [--once | --settings | --set key=value]"); exit(2)
+    print("usage: XliteBattery [--once | --settings | --set key=value]"); exit(2)
 }
 
 // MARK: - Menu bar app
 
-/// Visibility decisions go to ~/Library/Logs/MouseBattery.log (one line each).
+/// Visibility decisions go to ~/Library/Logs/XliteBattery.log (one line each).
 func logLine(_ msg: String) {
-    let url = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Logs/MouseBattery.log")
+    let url = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Logs/XliteBattery.log")
     let f = DateFormatter()
     f.dateFormat = "yyyy-MM-dd HH:mm:ss"
     let line = "\(f.string(from: Date())) \(msg)\n"
@@ -435,7 +435,7 @@ func logLine(_ msg: String) {
 
 final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    private let queue = DispatchQueue(label: "mouse-battery.hid")
+    private let queue = DispatchQueue(label: "xlite-battery.hid")
     private var watcher: IOHIDManager?
     private var battery: Battery?
     private var settings: Settings?

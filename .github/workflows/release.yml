@@ -17,15 +17,15 @@ jobs:
       - name: Build
         run: VERSION="${GITHUB_REF_NAME#v}" ./build.sh
       - name: Package
-        run: ditto -c -k --keepParent build.noindex/MouseBattery.app "MouseBattery-${GITHUB_REF_NAME}.zip"
+        run: ditto -c -k --keepParent build.noindex/XliteBattery.app "XliteBattery-${GITHUB_REF_NAME}.zip"
       - name: Release
         if: startsWith(github.ref, 'refs/tags/v')
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" "MouseBattery-${GITHUB_REF_NAME}.zip" --title "MouseBattery $GITHUB_REF_NAME" --generate-notes
+        run: gh release create "$GITHUB_REF_NAME" "XliteBattery-${GITHUB_REF_NAME}.zip" --title "XliteBattery $GITHUB_REF_NAME" --generate-notes
       - name: Upload artifact
         if: "!startsWith(github.ref, 'refs/tags/v')"
         uses: actions/upload-artifact@v5
         with:
-          name: MouseBattery
-          path: MouseBattery-*.zip
+          name: XliteBattery
+          path: XliteBattery-*.zip

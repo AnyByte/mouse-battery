@@ -1,17 +1,17 @@
 <p align="center">
-  <img src="docs/icon.png" width="160" alt="MouseBattery icon">
+  <img src="docs/icon.png" width="160" alt="XliteBattery icon">
 </p>
 
-<h1 align="center">MouseBattery</h1>
+<h1 align="center">XliteBattery</h1>
 
 <p align="center">
-  Battery level and settings of Pulsar wireless mice, right in the macOS menu bar.
+  Battery level and settings of the Pulsar Xlite v4 Wireless, right in the macOS menu bar.
 </p>
 
 <p align="center">
-  <a href="https://github.com/AnyByte/mouse-battery/releases/latest"><img src="https://img.shields.io/github/v/release/AnyByte/mouse-battery?label=release&color=0a84ff" alt="Latest release"></a>
-  <a href="https://github.com/AnyByte/mouse-battery/actions/workflows/release.yml"><img src="https://img.shields.io/github/actions/workflow/status/AnyByte/mouse-battery/release.yml?label=build" alt="Build"></a>
-  <a href="https://github.com/AnyByte/mouse-battery/releases"><img src="https://img.shields.io/github/downloads/AnyByte/mouse-battery/total?color=34c759" alt="Downloads"></a>
+  <a href="https://github.com/AnyByte/pulsar-xlite-battery/releases/latest"><img src="https://img.shields.io/github/v/release/AnyByte/pulsar-xlite-battery?label=release&color=0a84ff" alt="Latest release"></a>
+  <a href="https://github.com/AnyByte/pulsar-xlite-battery/actions/workflows/release.yml"><img src="https://img.shields.io/github/actions/workflow/status/AnyByte/pulsar-xlite-battery/release.yml?label=build" alt="Build"></a>
+  <a href="https://github.com/AnyByte/pulsar-xlite-battery/releases"><img src="https://img.shields.io/github/downloads/AnyByte/pulsar-xlite-battery/total?color=34c759" alt="Downloads"></a>
   <img src="https://img.shields.io/badge/macOS-12%2B-000000?logo=apple&logoColor=white" alt="macOS 12+">
   <img src="https://img.shields.io/badge/Apple%20Silicon%20%2B%20Intel-universal-555555" alt="Universal binary">
   <img src="https://img.shields.io/badge/Swift-single%20file-F05138?logo=swift&logoColor=white" alt="Swift">
@@ -19,10 +19,13 @@
 
 ---
 
-MouseBattery is a small menu bar app for Pulsar wireless mice on the Pulsar 1K dongle
-(`3710:5402`). It shows the charge next to a mouse icon and lets you change the mouse
-settings without the vendor software. Tested with the **Pulsar Xlite v4**; other Pulsar
-mice on the same dongle and protocol (e.g. the X3) should work too.
+XliteBattery is a small menu bar app for the **Pulsar Xlite v4 Wireless** on the stock
+1K dongle (`3710:5402`). It shows the charge next to a mouse icon and lets you change the
+mouse settings without the vendor software.
+
+> [!IMPORTANT]
+> Only the Xlite v4 with the 1K dongle is tested and supported. Other mice and the 4K/8K
+> dongles are not supported, and support for them is not planned.
 
 ## ✨ Features
 
@@ -37,13 +40,13 @@ mice on the same dongle and protocol (e.g. the X3) should work too.
 
 ## 📦 Install
 
-1. Download `MouseBattery-<version>.zip` from the
-   [latest release](https://github.com/AnyByte/mouse-battery/releases/latest).
-2. Unzip it and move `MouseBattery.app` to `/Applications`.
+1. Download `XliteBattery-<version>.zip` from the
+   [latest release](https://github.com/AnyByte/pulsar-xlite-battery/releases/latest).
+2. Unzip it and move `XliteBattery.app` to `/Applications`.
 3. The app is not notarized, so remove the quarantine flag once before the first launch:
 
    ```sh
-   xattr -dr com.apple.quarantine /Applications/MouseBattery.app
+   xattr -dr com.apple.quarantine /Applications/XliteBattery.app
    ```
 
 4. To start it at login, add it in **System Settings → General → Login Items**.
@@ -58,7 +61,7 @@ mice on the same dongle and protocol (e.g. the X3) should work too.
 Needs the Xcode command line tools (`xcode-select --install`).
 
 ```sh
-./build.sh      # build.noindex/MouseBattery.app, universal arm64 + x86_64
+./build.sh      # build.noindex/XliteBattery.app, universal arm64 + x86_64
 ./install.sh    # build, copy to ~/Applications, start at login via a LaunchAgent
 ```
 
@@ -68,9 +71,9 @@ with Xcode 26+ and the output is committed, so builds do not need a new Xcode.
 ## ⌨️ Command line
 
 ```sh
-MouseBattery.app/Contents/MacOS/MouseBattery --once            # battery level
-MouseBattery.app/Contents/MacOS/MouseBattery --settings        # dump all settings
-MouseBattery.app/Contents/MacOS/MouseBattery --set dpi=1600    # write and verify
+XliteBattery.app/Contents/MacOS/XliteBattery --once            # battery level
+XliteBattery.app/Contents/MacOS/XliteBattery --settings        # dump all settings
+XliteBattery.app/Contents/MacOS/XliteBattery --set dpi=1600    # write and verify
 ```
 
 Keys for `--set`: `dpi`, `polling`, `lod`, `angle_snap`, `ripple`, `motion_sync`,
