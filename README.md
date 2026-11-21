@@ -27,6 +27,10 @@ mouse settings without the vendor software.
 > Only the Xlite v4 with the 1K dongle is tested and supported. Other mice and the 4K/8K
 > dongles are not supported, and support for them is not planned.
 
+<p align="center">
+  <img src="docs/menu.png" width="288" alt="XliteBattery menu: battery, signal and mouse settings">
+</p>
+
 ## ✨ Features
 
 | | |
